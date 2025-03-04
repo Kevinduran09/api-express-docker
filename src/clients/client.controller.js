@@ -1,5 +1,7 @@
 const express = require('express');
+
 const clientSchema = require('./client.schema.js')
+
 const validate = require('../middlewares/validate.js')
 const router = express.Router();
 
@@ -20,5 +22,6 @@ router.get('/:cedula',validate(clientSchema.getById,param=true),(req,res)=>{
     const cedula = req.params.cedula;
     res.send({ 'client': cedula });
 })
+
 
 module.exports = router;

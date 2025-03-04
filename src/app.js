@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('api/clients',require('./clients/client.controller'))
+app.use('/api/clients',require('./clients/client.controller'))
 
 app.use((err, req, res, next) => {
     console.error('Error inesperado:', err);

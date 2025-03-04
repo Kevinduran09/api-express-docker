@@ -22,3 +22,5 @@ const clientSchema = {
 }
 
 module.exports = clientSchema;
+
+
