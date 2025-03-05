@@ -63,44 +63,47 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 
 ### Clientes
 
-#### GET /
+#### GET api/clients/
 
 Obtiene todos los clientes.
 
-#### POST /
+#### POST api/clients/
 
 Crea un nuevo cliente. Requiere validación de esquema.
 
-#### PUT /
+#### PUT api/clients/
 
 Actualiza un cliente existente. Requiere validación de esquema.
 
-#### DELETE /:cedula
+#### DELETE api/clients/:cedula
 
 Elimina un cliente existente. Requiere validación de esquema.
 
-#### GET /:cedula
+#### GET api/clients/:cedula
 
 Obtiene un cliente por su cédula. Requiere validación de esquema.
 
 ### Actividades
 
-#### GET /activities
+#### GET api/activities/
 
 Obtiene todas las actividades.
 
-#### POST /activities
+#### POST api/activities/
 
 Crea una nueva actividad. Requiere validación de esquema.
 
-#### PUT /activities/:id
+#### PUT api/activities/
 
 Actualiza una actividad existente. Requiere validación de esquema.
 
-#### DELETE /activities/:id
+#### DELETE api/activities/:code
 
 Elimina una actividad existente. Requiere validación de esquema.
 
+#### GET api/activities/:code
+
+Obtiene una actividad por su codigo. Requiere validación de esquema.
 ## Estructura del Proyecto
 
 Este proyecto está desarrollado con una arquitectura modular, lo cual lo hace más escalable y flexible ante cambios.
@@ -120,16 +123,4 @@ docker-compose.yml
 README.md
 ```
 
-## Contribuir
 
-Si deseas contribuir a este proyecto, por favor sigue estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
