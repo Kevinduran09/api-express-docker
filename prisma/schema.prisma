@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model clients {
+model Clients {
   id  Int   @id @default(autoincrement())
   name String @db.VarChar(20)
   lastname String @db.VarChar(40)
@@ -21,4 +21,16 @@ model clients {
   cedula String @db.VarChar(9) @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  activities Activities[]
 }
+
+model Activities {
+  id  Int   @id @default(autoincrement())
+  name String @db.VarChar(20)
+  date DateTime @db.DateTime()
+  coste Int @db.Int
+  description String @db.VarChar(300)
+  code String @db.VarChar(10) @unique
+  client Clients @relation(fields: [clientCed], references: [cedula])
+  clientCed String
+  }
