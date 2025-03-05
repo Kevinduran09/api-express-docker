@@ -39,7 +39,6 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
    ```sh
    npm run doup
    ```
-
 4. Instala las dependencias del proyecto:
    ```sh
    npm install
@@ -48,11 +47,6 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 5. Ejecuta las migraciones de Prisma para configurar la base de datos:
    ```sh
    npm run migrate
-   ```
-
-6. Genera el cliente de Prisma:
-   ```sh
-   npx prisma generate
    ```
 
 7. La API estará disponible en `http://localhost:3000`.
@@ -64,7 +58,6 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 - `npm run doup`: Construye y levanta los contenedores de Docker.
 - `npm run down`: Detiene y elimina los contenedores de Docker.
 - `npm run migrate`: Ejecuta las migraciones de Prisma.
-- `npm run generate`: Genera el cliente de Prisma.
 
 ## Endpoints
 
