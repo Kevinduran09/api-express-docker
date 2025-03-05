@@ -57,7 +57,7 @@ router.put('/', validate(clientSchema.updateClient), async (req, res) => {
     }
 });
 
-router.delete('/', validate(clientSchema.deleteClient), async (req, res) => {
+router.delete('/:cedula', validate(clientSchema.deleteClient, param = true), async (req, res) => {
     try {
         const cedula = req.params.cedula;
 

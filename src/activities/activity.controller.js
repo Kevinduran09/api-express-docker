@@ -65,7 +65,7 @@ router.put('/', validate(activitySchema.updateActivity), async (req, res) => {
     }
 });
 
-router.delete('/', validate(activitySchema.deleteActivity), async (req, res) => {
+router.delete('/:code', validate(activitySchema.deleteActivity, param = true), async (req, res) => {
     try {
         const code = req.params.code;
 
