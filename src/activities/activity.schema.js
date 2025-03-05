@@ -20,6 +20,7 @@ const activitySchema = {
         description: z.string()
             .min(3, 'La descripción debe contener al menos 3 caracteres')
             .max(300, 'La descripción debe contener como máximo 300 caracteres'),
+            
     }),
 
     updateActivity: z.object({
