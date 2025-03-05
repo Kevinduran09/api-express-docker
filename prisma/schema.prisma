@@ -30,7 +30,8 @@ model Activities {
   date DateTime @db.DateTime()
   coste Int @db.Int
   description String @db.VarChar(300)
-  code String @db.VarChar(10) @unique
-  client Clients @relation(fields: [clientCed], references: [cedula])
+  code String @db.VarChar(16) @unique
+  client Clients @relation(fields: [clientCed], references: [cedula], onDelete: Cascade)
   clientCed String
   }
+

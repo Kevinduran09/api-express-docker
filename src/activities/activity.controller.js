@@ -3,7 +3,7 @@ const express = require('express');
 const activitySchema = require('./activity.schema.js')
 
 const { PrismaClient } = require('@prisma/client')
-
+const generarCodigoUnico = require('../helpers/generateCode.js')
 const prisma = new PrismaClient()
 
 const validate = require('../middlewares/validate.js')
@@ -15,13 +15,18 @@ router.get('/', async (req, res) => {
         res.send({ 'activities': data });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error getting activities',
+            message: 'Error getting activities',
             error: error.message
         })
     }
 });
 
 router.post('/', validate(activitySchema.createActivity), async (req, res) => {
+
+    const code = generarCodigoUnico();
+    req.body.code = code;
+    console.log(req.body);
+    
     try {
         const data = await prisma.activities.create({
             data: req.body
@@ -30,7 +35,7 @@ router.post('/', validate(activitySchema.createActivity), async (req, res) => {
         res.send({ 'activity created': data });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error creating activity',
+            message: 'Error creating activity',
             error: error.message
         })
     }
@@ -47,7 +52,7 @@ router.put('/', validate(activitySchema.updateActivity), async (req, res) => {
 
         if (!activity) {
             return res.status(404).send({
-                msg: 'Activity not found'
+                message: 'Activity not found'
             });
         }
 
@@ -59,13 +64,13 @@ router.put('/', validate(activitySchema.updateActivity), async (req, res) => {
         res.send({ 'activity updated': updatedActivity });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error updating activity',
+            message: 'Error updating activity',
             error: error.message
         });
     }
 });
 
-router.delete('/', validate(activitySchema.deleteActivity), async (req, res) => {
+router.delete('/:code', validate(activitySchema.deleteActivity,param=true), async (req, res) => {
     try {
         const code = req.params.code;
 
@@ -107,7 +112,7 @@ router.get('/:code', validate(activitySchema.getById, param = true), async (req,
         res.send({ 'activity': activity });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error finding activity',
+            message: 'Error getting activity',
             error: error.message
         });
     }

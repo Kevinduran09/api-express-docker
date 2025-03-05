@@ -2,9 +2,6 @@ const { z, object } = require('zod');
 
 const activitySchema = {
     createActivity: z.object({
-        code: z.string()
-            .length(9, 'El código debe contener 9 caracteres')
-            .regex(/^[0-9]+$/, 'El formato del código es incorrecto'),
         name: z.string()
             .min(3, 'El nombre debe contener al menos 3 caracteres')
             .max(20, 'El nombre debe contener como máximo 20 caracteres'),
@@ -19,13 +16,12 @@ const activitySchema = {
         description: z.string()
             .min(3, 'La descripción debe contener al menos 3 caracteres')
             .max(300, 'La descripción debe contener como máximo 300 caracteres'),
-            
+
     }),
 
     updateActivity: z.object({
         code: z.string()
-            .length(9, 'El código debe contener 9 caracteres')
-            .regex(/^[0-9]+$/, 'El formato del código es incorrecto'),
+            .length(16, 'El código debe contener 9 caracteres'),
         name: z.string()
             .min(3, 'El nombre debe contener al menos 3 caracteres')
             .max(20, 'El nombre debe contener como máximo 20 caracteres')
@@ -44,14 +40,14 @@ const activitySchema = {
 
     deleteActivity: z.object({
         code: z.string()
-            .length(9, 'El codigo debe contener 9 caracteres')
-            .regex(/^[0-9]+$/, 'Formato de codigo incorrecto'),
+            .length(16, 'El codigo debe contener 9 caracteres')
+
     }),
 
     getById: z.object({
         code: z.string()
-            .length(9, 'El codigo debe contener 9 caracteres')
-            .regex(/^[0-9]+$/, 'Formato de codigo incorrecto'),
+            .length(16, 'El codigo debe contener 9 caracteres')
+
     }),
 };
 

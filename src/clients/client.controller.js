@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         res.send({ 'clients': data });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error getting clients',
+            message: 'Error getting clients',
             error: error.message
         })
     }
@@ -42,7 +42,7 @@ router.put('/', validate(clientSchema.updateClient), async (req, res) => {
 
         if (!client) {
             return res.status(404).send({
-                msg: 'Client not found'
+                message: 'Client not found'
             });
         }
 
@@ -57,7 +57,7 @@ router.put('/', validate(clientSchema.updateClient), async (req, res) => {
     }
 });
 
-router.delete('/', validate(clientSchema.deleteClient), async (req, res) => {
+router.delete('/:cedula', validate(clientSchema.deleteClient, param = true), async (req, res) => {
     try {
         const cedula = req.params.cedula;
 
@@ -67,7 +67,7 @@ router.delete('/', validate(clientSchema.deleteClient), async (req, res) => {
 
         if (!client) {
             return res.status(404).send({
-                msg: 'Client not found'
+                message: 'Client not found'
             });
         }
 
@@ -75,10 +75,10 @@ router.delete('/', validate(clientSchema.deleteClient), async (req, res) => {
             where: { cedula: cedula }
         });
 
-        res.send({ msg: 'Client deleted' });
+        res.send({ message: 'Client deleted' });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error deleting client',
+            message: 'Error deleting client',
             error: error.message
         });
     }
@@ -93,15 +93,15 @@ router.get('/:cedula', validate(clientSchema.getById, param = true), async (req,
             where: {
                 cedula: cedula
             },
-            omit: {
-                createdAt: true,
-                updatedAt: true
+            include:{
+                activities: true,
             }
+           
         })
         res.send({ 'client': client });
     } catch (error) {
         res.status(500).send({
-            msg: 'Error fetching client',
+            message: 'Error getting client',
             error: error.message
         });
     }

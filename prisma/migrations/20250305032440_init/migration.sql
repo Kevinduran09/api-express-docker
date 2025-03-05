@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `clients` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE `clients`;
-
 -- CreateTable
 CREATE TABLE `Clients` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -29,11 +20,12 @@ CREATE TABLE `Activities` (
     `date` DATETIME NOT NULL,
     `coste` INTEGER NOT NULL,
     `description` VARCHAR(300) NOT NULL,
-    `code` VARCHAR(10) NOT NULL,
+    `code` VARCHAR(16) NOT NULL,
     `clientCed` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `Activities_code_key`(`code`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Activities` ADD CONSTRAINT `Activities_clientCed_fkey` FOREIGN KEY (`clientCed`) REFERENCES `Clients`(`cedula`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Activities` ADD CONSTRAINT `Activities_clientCed_fkey` FOREIGN KEY (`clientCed`) REFERENCES `Clients`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
