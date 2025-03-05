@@ -63,50 +63,113 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 
 ### Clientes
 
-#### GET api/clients/
+#### GET ``api/clients/``
 
 Obtiene todos los clientes.
 
-#### POST api/clients/
+#### POST ``api/clients/``
 
 Crea un nuevo cliente. Requiere validación de esquema.
 
-#### PUT api/clients/
+**Ejemplo del cuerpo de la solicitud**
+````
+{
+  "name":"kevin",
+  "lastname":"duran",
+  "email":"kevin@gmail.com",
+  "cedula":"504400330"
+}
+````
+
+#### PUT ``api/clients/``
 
 Actualiza un cliente existente. Requiere validación de esquema.
 
-#### DELETE api/clients/:cedula
+**Ejemplo del cuerpo de la solicitud**
+````
+{
+  "name":"kevin Andrey",
+  "cedula":"504400330"
+}
+````
+#### DELETE ``api/clients/:cedula``
 
 Elimina un cliente existente. Requiere validación de esquema.
 
-#### GET api/clients/:cedula
+**Ejemplo del endpoint**
+
+````
+api/clients/504400330
+````
+
+#### GET ``api/clients/:cedula``
 
 Obtiene un cliente por su cédula. Requiere validación de esquema.
 
+**Ejemplo del endpoint**
+
+````
+api/clients/504400330
+````
+
 ### Actividades
 
-#### GET api/activities/
+#### GET ``api/activities/``
 
 Obtiene todas las actividades.
 
-#### POST api/activities/
+#### POST ``api/activities/``
 
 Crea una nueva actividad. Requiere validación de esquema.
 
-#### PUT api/activities/
+**Ejemplo del cuerpo de la solicitud**
+````
+{
+  "name":"canopy",
+  "clientCed":"504400330",
+  "date":"2025-03-20T10:10:00Z",
+  "coste":15000,
+  "description":"altura 100 metros"
+}
+````
+
+#### PUT ``api/activities/``
 
 Actualiza una actividad existente. Requiere validación de esquema.
 
-#### DELETE api/activities/:code
+**Ejemplo del cuerpo de la solicitud**
+````
+{
+  "code":"codigo de la actividad"
+  "name":"canopy in the rive",
+}
+````
+
+#### DELETE ``api/activities/:code``
 
 Elimina una actividad existente. Requiere validación de esquema.
 
-#### GET api/activities/:code
+**Ejemplo del endpoint**
+
+````
+api/activities/codigo_de_actividad
+````
+
+#### GET ``api/activities/:code``
 
 Obtiene una actividad por su codigo. Requiere validación de esquema.
+
+**Ejemplo del endpoint**
+
+````
+api/activities/codigo_de_actividsd
+````
+
 ## Estructura del Proyecto
 
-Este proyecto está desarrollado con una arquitectura modular, lo cual lo hace más escalable y flexible ante cambios.
+Este proyecto está desarrollado con una arquitectura modular, lo cual lo hace más escalable y flexible ante cambios, implementa Prisma como ORM para agilizar el proceso de la conexión a la base de datos y los métodos CRUD.
+
+La validación de los datos recibidos en cada solicitud se realiza implementando un middleware en cada endpoint, se utiliza [Zod](https://zod.dev/) la cual es una librería que facilita la validación de los datos por medio de modelos. 
 
 ```
 /src
@@ -119,7 +182,7 @@ Este proyecto está desarrollado con una arquitectura modular, lo cual lo hace m
   /middlewares
     validate.js
 docker-compose.yml
-.env.example
+.env
 README.md
 ```
 
