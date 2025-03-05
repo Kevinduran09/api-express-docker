@@ -25,7 +25,7 @@ router.post('/', validate(activitySchema.createActivity), async (req, res) => {
 
     const code = generarCodigoUnico();
     req.body.code = code;
-    console.log(req.body);
+  
     
     try {
         const data = await prisma.activities.create({
@@ -71,7 +71,6 @@ router.put('/', validate(activitySchema.updateActivity), async (req, res) => {
 });
 
 router.delete('/:code', validate(activitySchema.deleteActivity,param=true), async (req, res) => {
-router.delete('/:code', validate(activitySchema.deleteActivity, param = true), async (req, res) => {
     try {
         const code = req.params.code;
 
@@ -102,7 +101,7 @@ router.get('/:code', validate(activitySchema.getById, param = true), async (req,
 
     try {
         const code = req.params.code;
-        console.log(typeof code);
+
 
         const activity = await prisma.activities.findUnique({
             where: {
