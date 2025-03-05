@@ -65,7 +65,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 
 #### GET /
 
-Devuelve un mensaje de bienvenida.
+Obtiene todos los clientes.
 
 #### POST /
 
